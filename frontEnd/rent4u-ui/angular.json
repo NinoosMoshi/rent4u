@@ -25,9 +25,13 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/boxicons/css/boxicons.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
