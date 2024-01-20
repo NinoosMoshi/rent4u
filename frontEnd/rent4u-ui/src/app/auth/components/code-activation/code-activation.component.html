@@ -2,13 +2,13 @@
   <div class="form login">
       <div class="form-content">
           <header>Code Activation</header>
-          <span>nalkaton@gmail.com</span>
-          <form action="#">
+          <span>{{email}}</span>
+          <form [formGroup]="codeForm">
               <div class="field input-field">
-                  <input type="text" placeholder="Enter The Code" class="input">
+                  <input formControlName="code" type="text" placeholder="Enter The Code" class="input">
               </div>
               <div class="field button-field">
-                  <button>Submit</button>
+                  <button type="submit" (click)="onSubmit()">Submit</button>
               </div>
           </form>
       </div>

@@ -2,27 +2,36 @@
   <div class="form login">
     <div class="form-content">
       <header>Signup</header>
-      <form action="#">
+      <form [formGroup]="signupForm">
         <div class="field input-field">
-          <input type="text" placeholder="Your Name" class="input">
+          <input formControlName="name" type="text" placeholder="Your Name" class="input">
+          <mat-error *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
+            Please enter a valid name.
+         </mat-error>
         </div>
 
         <div class="field input-field">
-          <input type="email" placeholder="Email" class="input">
+          <input formControlName="email" type="email" placeholder="Email" class="input">
+          <mat-error *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched">
+            Please enter a valid email.
+         </mat-error>
         </div>
 
         <div class="field input-field">
-          <input type="password" placeholder="Create password" class="password" [type]="passwordFieldType">
+          <input formControlName="password" type="password" placeholder="Create password" class="password" [type]="passwordFieldType">
           <i class='bx bx-hide eye-icon' (click)="togglePasswordVisibility()"></i>
+          <mat-error *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched">
+            Please enter a valid password.
+         </mat-error>
         </div>
 
         <div class="field input-field">
-          <input type="password" placeholder="Confirm password" class="password" [type]="passwordFieldType">
+          <input formControlName="confirmPassword" type="password" placeholder="Confirm password" class="password" [type]="passwordFieldType">
           <i class='bx bx-hide eye-icon' (click)="togglePasswordVisibility()"></i>
         </div>
 
         <div class="field button-field">
-          <button>Signup</button>
+          <button type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">Signup</button>
         </div>
       </form>
 
