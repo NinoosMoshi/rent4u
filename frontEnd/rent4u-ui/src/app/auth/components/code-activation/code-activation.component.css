@@ -1,0 +1,8 @@
+span {
+  color: #fe5b3d;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+

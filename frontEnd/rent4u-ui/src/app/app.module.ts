@@ -7,6 +7,10 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { CodeActivationComponent } from './auth/components/code-activation/code-activation.component';
 import { ResetPasswordComponent } from './auth/components/reset-password/reset-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoAngularMaterialModules } from './DemoAngularMaterialModules';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { ResetPasswordComponent } from './auth/components/reset-password/reset-p
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    DemoAngularMaterialModules
   ],
   providers: [],
   bootstrap: [AppComponent]
