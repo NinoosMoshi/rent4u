@@ -136,5 +136,25 @@ background-color: var(--main-color);
 
 /* end login and signup */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Add this CSS for the spacer */
+.spacer {
+  height: 8px; /* Adjust the height as needed */
+}
+
+.validation-messages {
+  color: #fe5b3d;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .form {
+    margin-top: 20px;
+  }
+}
+
+
+

@@ -1,37 +1,81 @@
+
 <section class="container forms">
   <div class="form login">
     <div class="form-content">
       <header>Signup</header>
       <form [formGroup]="signupForm">
         <div class="field input-field">
-          <input formControlName="name" type="text" placeholder="Your Name" class="input">
-          <mat-error *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
-            Please enter a valid name.
-         </mat-error>
+          <input id="name" [formControlName]="'name'" type="text" placeholder="Your Name" class="input">
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="signupForm.controls['name'].invalid && (signupForm.controls['name'].dirty || signupForm.controls['name'].touched)">
+            <div *ngIf="signupForm.controls['name'].errors?.['required']">
+              First name is required.
+            </div>
+            <div *ngIf="signupForm.controls['name'].errors?.['minlength']">
+              First name must be at least 5 characters long.
+            </div>
+          </div>
+          <!-- end validation -->
         </div>
 
-        <div class="field input-field">
-          <input formControlName="email" type="email" placeholder="Email" class="input">
-          <mat-error *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched">
-            Please enter a valid email.
-         </mat-error>
-        </div>
+        <!-- Add space here -->
+        <div class="spacer"></div>
+
 
         <div class="field input-field">
-          <input formControlName="password" type="password" placeholder="Create password" class="password" [type]="passwordFieldType">
+          <input id="email" [formControlName]="'email'" type="email" placeholder="Your Email" class="input validation-messages">
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+            <div *ngIf="signupForm.controls['email'].errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="signupForm.controls['email'].errors?.['email']">
+              Please enter a valid email address.
+            </div>
+          </div>
+          <!-- end validation -->
+        </div>
+
+        <!-- Add space here -->
+        <div class="spacer"></div>
+
+        <div class="field input-field">
+          <input id="password" [formControlName]="'password'" type="password" placeholder="Your Password" class="input">
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="signupForm.get('password').invalid && (signupForm.get('password').dirty || signupForm.get('password').touched)">
+            <div *ngIf="signupForm.get('password').errors?.['required']">
+              Password is required.
+            </div>
+            <div *ngIf="signupForm.get('password').errors?.['minlength']">
+              Password must be at least 3 digit long.
+            </div>
+          </div>
+          <!-- end validation -->
+        </div>
+
+        <!-- Add space here -->
+        <div class="spacer"></div>
+
+        <div class="field input-field">
+          <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm password" class="password" [type]="passwordFieldType">
           <i class='bx bx-hide eye-icon' (click)="togglePasswordVisibility()"></i>
-          <mat-error *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched">
-            Please enter a valid password.
-         </mat-error>
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="signupForm.get('confirmPassword').invalid && (signupForm.get('confirmPassword').dirty || signupForm.get('confirmPassword').touched)">
+            <div *ngIf="signupForm.get('confirmPassword').errors?.['required']">
+              Confirm Password is required.
+            </div>
+            <div *ngIf="signupForm.get('confirmPassword').errors?.['confirm']">
+              Passwords do not match.
+            </div>
+          </div>
+          <!-- end validation -->
         </div>
 
-        <div class="field input-field">
-          <input formControlName="confirmPassword" type="password" placeholder="Confirm password" class="password" [type]="passwordFieldType">
-          <i class='bx bx-hide eye-icon' (click)="togglePasswordVisibility()"></i>
-        </div>
+        <!-- Add space here -->
+        <div class="spacer"></div>
 
         <div class="field button-field">
-          <button type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">Signup</button>
+          <button [disabled]="!signupForm.valid" (click)="register()">Signup</button>
         </div>
       </form>
 

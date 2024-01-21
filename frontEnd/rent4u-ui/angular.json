@@ -25,14 +25,10 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/boxicons/css/boxicons.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/js/main.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -92,7 +88,6 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -102,6 +97,6 @@
     }
   },
   "cli": {
-    "analytics": "e6f6ff92-b5c9-4dd0-95d9-9478118831da"
+    "analytics": "db00a2d3-6af5-4bbf-a172-355321f78c08"
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -13,51 +13,59 @@ export class SignupComponent {
   signupForm!: FormGroup;
   passwordFieldType: string = 'password';
 
+
   constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private router: Router){}
+    private authService: AuthService,
+    private router: Router){}
+
+    ngOnInit():void{
 
 
-ngOnInit(): void{
-  this.signupForm = this.fb.group({
-      name:[null, [Validators.required]],
-      email:[null, [Validators.required]],
-      password:[null, [Validators.required]],
-      confirmPassword:[null, [Validators.required]]
-      })
-}
 
-  togglePasswordVisibility() {
-    this.passwordFieldType = (this.passwordFieldType === 'password') ? 'text' : 'password';
-  }
-
-  onSubmit(){
-    const email = this.signupForm.get('email')?.value;
-    const password = this.signupForm.get('password')?.value;
-    const confirmPassword = this.signupForm.get('confirmPassword')?.value;
-
-    if(password !== confirmPassword){
-      alert('Passwords do not match.')
-      return;
+      this.signupForm = this.fb.group({
+        name:[null, [Validators.required, Validators.minLength(5)]],
+        email:[null, [Validators.required, Validators.email]],
+        password:[null, [Validators.required, Validators.minLength(3)]],
+        confirmPassword:[null, [Validators.required, this.confirmationValidate]]
+        })
     }
 
-    this.authService.register(this.signupForm.value).subscribe({
-      next:res =>{
-        if(res.result == 1){
-          sessionStorage.setItem("emailAtive",email);
-          alert('Sign up successful!.')
-          this.router.navigateByUrl("/active-code")
-        }else{
-          alert("email is exists")
-        }
 
-      },
-      error:err =>{
-        alert('Sign up faild. Please try again.')
+    confirmationValidate = (control: FormControl): { [s: string]: boolean } => {
+      if (!control.value) {
+        return { require: true };
+      } else if (control.value !== this.signupForm.controls['password'].value) {
+        return { confirm: true };
       }
-    })
+      return {};
+    }
 
+
+
+    togglePasswordVisibility() {
+      this.passwordFieldType = (this.passwordFieldType === 'password') ? 'text' : 'password';
+    }
+
+
+
+    register(){
+      const email = this.signupForm.get('email')?.value;
+      this.authService.register(this.signupForm.value).subscribe({
+        next:res =>{
+          if(res.result == 1){
+            sessionStorage.setItem("emailAtive",email);
+            this.router.navigateByUrl("/active-code")
+          }else{
+
+          }
+
+        },
+        error:err =>{
+
+        }
+      })
   }
+
 
 
 
