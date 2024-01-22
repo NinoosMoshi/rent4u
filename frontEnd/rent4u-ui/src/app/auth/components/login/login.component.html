@@ -1,1 +1,60 @@
-<p>login works!</p>
+
+<section class="container forms">
+  <div class="form login">
+    <div class="form-content">
+      <header>Login</header>
+      <form [formGroup]="loginForm">
+
+
+
+        <div class="field input-field">
+          <input id="email" [formControlName]="'email'" type="email" placeholder="Your Email" class="input validation-messages">
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+            <div *ngIf="loginForm.controls['email'].errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="loginForm.controls['email'].errors?.['email']">
+              Please enter a valid email address.
+            </div>
+          </div>
+          <!-- end validation -->
+        </div>
+
+        <!-- Add space here -->
+        <div class="spacer"></div>
+
+        <div class="field input-field">
+          <input id="password" [formControlName]="'password'" type="password" placeholder="Your Password" class="input" [type]="passwordFieldType">
+          <i class='bx bx-hide eye-icon' (click)="togglePasswordVisibility()"></i>
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            <div *ngIf="loginForm.get('password').errors?.['required']">
+              Password is required.
+            </div>
+            <div *ngIf="loginForm.get('password').errors?.['minlength']">
+              Password must be at least 6 digit long.
+            </div>
+          </div>
+          <!-- end validation -->
+        </div>
+
+        <!-- Add space here -->
+        <div class="spacer"></div>
+
+        <div class="form-link">
+          <a routerLink="/reset" class="forgot-pass">Forgot password?</a>
+        </div>
+
+
+        <div class="field button-field">
+          <button [disabled]="!loginForm.valid" (click)="onSubmit()">Login</button>
+        </div>
+      </form>
+
+      <div class="form-link">
+        <span>Don't have an account? <a routerLink="/register" class="link signup-link">Signup</a></span>
+      </div>
+    </div>
+  </div>
+</section>

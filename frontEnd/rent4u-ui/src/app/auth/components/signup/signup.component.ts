@@ -19,13 +19,10 @@ export class SignupComponent {
     private router: Router){}
 
     ngOnInit():void{
-
-
-
       this.signupForm = this.fb.group({
         name:[null, [Validators.required, Validators.minLength(3)]],
         email:[null, [Validators.required, Validators.email]],
-        password:[null, [Validators.required, Validators.minLength(3)]],
+        password:[null, [Validators.required, Validators.minLength(6)]],
         confirmPassword:[null, [Validators.required, this.confirmationValidate]]
         })
     }

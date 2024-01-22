@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { CodeActivationComponent } from './auth/components/code-activation/code-activation.component';
 import { LoginComponent } from './auth/components/login/login.component';
+import { ResetPasswordComponent } from './auth/components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     CodeActivationComponent,
-    LoginComponent
+    LoginComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
