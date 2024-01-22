@@ -7,12 +7,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { CodeActivationComponent } from './auth/components/code-activation/code-activation.component';
+import { LoginComponent } from './auth/components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
-    CodeActivationComponent
+    CodeActivationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

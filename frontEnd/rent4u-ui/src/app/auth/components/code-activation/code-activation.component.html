@@ -1,1 +1,32 @@
-<p>code-activation works!</p>
+
+<section class="container forms">
+  <div class="form login">
+    <div class="form-content">
+      <header>Activation Code</header>
+      <span style="display: flex; justify-content: center; color: tomato; font-weight: 500;">{{email}}</span>
+      <form [formGroup]="codeForm">
+        <div class="field input-field">
+          <input id="code" [formControlName]="'code'" type="text" placeholder="Enter The Code" class="input">
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="codeForm.controls['code'].invalid && (codeForm.controls['code'].dirty || codeForm.controls['code'].touched)">
+            <div *ngIf="codeForm.controls['code'].errors?.['required']">
+              Code is required.
+            </div>
+            <div *ngIf="codeForm.controls['code'].errors?.['minlength'] || codeForm.controls['code'].errors?.['maxlength']">
+              Code must be exactly 5 digits.
+            </div>
+          </div>
+          <!-- end validation -->
+        </div>
+
+        <!-- Add space here -->
+        <div class="spacer"></div>
+
+        <div class="field button-field">
+          <button [disabled]="!codeForm.valid" (click)="onSubmit()">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>

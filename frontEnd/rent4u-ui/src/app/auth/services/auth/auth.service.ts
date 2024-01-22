@@ -13,10 +13,14 @@ export class AuthService {
   constructor(private http:HttpClient, private userStorageService: StorageService) { }
 
 
-     // http://localhost:8080/api/v1/auth/register
-     register(registerDTO:any): Observable<any>{
+    // http://localhost:8080/api/v1/auth/register
+    register(registerDTO:any): Observable<any>{
       return this.http.post<any>(`${this.BASE_URL}/register`,registerDTO);
-   }
+    }
+
+    activeAccount(email: string, code: string): Observable<any>{
+      return this.http.post<any>(`${this.BASE_URL}/activated`, { email, code });
+    }
 
 
 
