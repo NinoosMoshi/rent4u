@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
 
   constructor(private fb:FormBuilder,
     private authService: AuthService,
-    private router: Router){}
+    private router: Router,
+    private spinner: NgxSpinnerService){}
 
 
     ngOnInit():void{
@@ -31,12 +33,16 @@ export class LoginComponent {
     }
 
     onSubmit(){
+      this.spinner.show();
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
 
 
       this.authService.userActive(email,password).subscribe({
         next:res =>{
+                 setTimeout(() => {
+                      this.spinner.hide();
+                    }, 2000);
           let ac = res.active;
           if(ac == 1){
             this.authService.login(email, password).subscribe({
@@ -50,7 +56,9 @@ export class LoginComponent {
                   }
               },
               error: err =>{
-
+                        setTimeout(() => {
+                      this.spinner.hide();
+                    }, 2000);
               }
       })
           }

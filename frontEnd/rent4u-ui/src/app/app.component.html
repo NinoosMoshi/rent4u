@@ -1,4 +1,33 @@
+<!-- start Header -->
+<header>
+  <a href="#" class="logo"><img src="../assets/img/jeep.png" alt=""></a>
 
-<button routerLink="/register">Signup</button>
+  <div class="bx bx-menu" id="menu-icon"></div>
+
+  <ul class="navbar">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#ride">Ride</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <div class="header-btn">
+      <a routerLink="/register" class="sign-up">Sign Up</a>
+      <a routerLink="/login" class="sign-in">Sign In</a>
+  </div>
+</header>
+<!-- end Header -->
+
+
 
 <router-outlet></router-outlet>
+
+<!-- spinner -->
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

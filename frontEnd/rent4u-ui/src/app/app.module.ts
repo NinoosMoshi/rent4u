@@ -9,6 +9,10 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import { CodeActivationComponent } from './auth/components/code-activation/code-activation.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { ResetPasswordComponent } from './auth/components/reset-password/reset-password.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './common/home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -16,14 +20,17 @@ import { ResetPasswordComponent } from './auth/components/reset-password/reset-p
     SignupComponent,
     CodeActivationComponent,
     LoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    HomeComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

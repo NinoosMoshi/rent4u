@@ -4,12 +4,15 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import { CodeActivationComponent } from './auth/components/code-activation/code-activation.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { ResetPasswordComponent } from './auth/components/reset-password/reset-password.component';
+import { HomeComponent } from './common/home/home.component';
 
 const routes: Routes = [
   {path:'reset', component:ResetPasswordComponent},
   { path:'active-code', component:CodeActivationComponent},
   {path:'register', component:SignupComponent},
   {path:'login', component:LoginComponent},
+  {path:'home', component:HomeComponent},
+  {path:'', redirectTo:'/home',pathMatch:'full'},
 
 
   {path:'admin', loadChildren: () => import("./modules/admin/admin.module").then(m => m.AdminModule)},
