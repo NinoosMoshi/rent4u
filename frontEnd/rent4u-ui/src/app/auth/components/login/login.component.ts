@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
   constructor(private fb:FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService){}
 
 
@@ -47,6 +49,7 @@ export class LoginComponent {
           if(ac == 1){
             this.authService.login(email, password).subscribe({
               next: res =>{
+                this.toastr.success('Success', 'You Logging Successfully', {timeOut: 2000});
 
                  if(StorageService.isAdminLoggedIn()){
                     this.router.navigateByUrl("/admin/dashboard")
@@ -56,9 +59,9 @@ export class LoginComponent {
                   }
               },
               error: err =>{
-                        setTimeout(() => {
-                      this.spinner.hide();
-                    }, 2000);
+                this.toastr.error('Error', 'your credentials are invalid', {timeOut: 2000})
+                setTimeout(() => { this.spinner.hide();}, 2000);
+
               }
       })
           }
@@ -67,12 +70,12 @@ export class LoginComponent {
               this.router.navigateByUrl("/active-code")
           }
           else{
-
+            this.toastr.error('Error', 'your credentials are invalid', {timeOut: 2000})
           }
 
         },
         error:err =>{
-
+          this.toastr.error('Error', 'There is something wrong', {timeOut: 2000})
         }
       })
 

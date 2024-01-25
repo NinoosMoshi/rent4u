@@ -10,6 +10,7 @@ import { CodeActivationComponent } from './auth/components/code-activation/code-
 import { LoginComponent } from './auth/components/login/login.component';
 import { ResetPasswordComponent } from './auth/components/reset-password/reset-password.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './common/home/home.component';
 
@@ -30,7 +31,8 @@ import { HomeComponent } from './common/home/home.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
