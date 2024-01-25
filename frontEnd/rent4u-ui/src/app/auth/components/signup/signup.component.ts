@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,8 @@ export class SignupComponent {
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router){}
+    private router: Router,
+    private toastr: ToastrService){}
 
     ngOnInit():void{
       this.signupForm = this.fb.group({
@@ -50,15 +52,16 @@ export class SignupComponent {
       this.authService.register(this.signupForm.value).subscribe({
         next:res =>{
           if(res.result == 1){
+            this.toastr.success('Success', 'You Register Successfully', {timeOut: 2000});
             sessionStorage.setItem("emailAtive",email);
             this.router.navigateByUrl("/active-code")
           }else{
-
+            this.toastr.error('Error', 'Email Is Exists', {timeOut: 2000})
           }
 
         },
         error:err =>{
-
+          this.toastr.error('Error', 'Registration failed. There is something wrong.', {timeOut: 2000})
         }
       })
   }
