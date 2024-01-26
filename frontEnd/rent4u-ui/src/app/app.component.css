@@ -1,0 +1,21 @@
+.header-btn .log-out {
+  background: #fe5b3d;
+  color: #fff;
+  border-radius: 0.5rem;
+}
+
+.header-btn .log-out:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 350px) {
+
+  .header-btn .log-out {
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+}
+
+
