@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from '../../services/admin.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-car',
@@ -23,7 +26,10 @@ export class AddCarComponent {
 
 
   constructor(private fb:FormBuilder,
-              private router:Router){}
+              private adminService:AdminService,
+              private router:Router,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService){}
 
 
 ngOnInit(){
@@ -42,6 +48,7 @@ ngOnInit(){
 
 addCar() {
   if(this.carForm.valid){
+    this.spinner.show();
     console.log(this.carForm.value)
     const formData:FormData = new FormData();
     formData.append('image', this.selectedFile);
@@ -54,16 +61,18 @@ addCar() {
     formData.append('description', this.carForm.get('description').value);
 
 
-    //  this.adminService.postCar(formData).subscribe({
-    //   next:res =>{
-    //     this.isSpinning = false
-    //     this.message.success("Car posted successfully", {nzDuration:5000})
-    //     this.router.navigateByUrl("/admin/dashboard")
-    //   },
-    //   error:err =>{
-    //     this.message.error("Error while post car", {nzDuration:5000})
-    //   }
-    //  })
+     this.adminService.addCar(formData).subscribe({
+      next:res =>{
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 2000);
+        this.router.navigateByUrl("/admin/dashboard")
+        this.toastr.success('Success', 'New Car Added Successfully', {timeOut: 2000});
+      },
+      error:err =>{
+        this.toastr.error('Error', 'An error occurred while posting a new car.', {timeOut: 2000})
+      }
+     })
 
   }
   else{

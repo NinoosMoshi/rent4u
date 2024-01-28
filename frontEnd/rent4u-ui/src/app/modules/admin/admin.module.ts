@@ -9,6 +9,9 @@ import { SearchCarComponent } from './components/search-car/search-car.component
 import { UpdateCarComponent } from './components/update-car/update-car.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DemoAngularZorroModules } from 'src/app/DemoAngularZorroModules';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -26,7 +29,10 @@ import { DemoAngularZorroModules } from 'src/app/DemoAngularZorroModules';
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    DemoAngularZorroModules
+    DemoAngularZorroModules,
+    HttpClientModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
   ]
 })
 export class AdminModule { }

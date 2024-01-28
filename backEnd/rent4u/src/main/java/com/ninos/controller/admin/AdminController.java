@@ -3,9 +3,11 @@ package com.ninos.controller.admin;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +25,16 @@ public class AdminController {
 
 
     @PostMapping("/car")
-    public ResponseEntity<CarDTO> addCar(@ModelAttribute CarDTO carDTO) {
+    public ResponseEntity<CarDTO> addCar(@ModelAttribute CarDTO carDTO) throws IOException {
         CarDTO carDTO1 = adminService.addCar(carDTO);
         return new ResponseEntity<>(carDTO1, HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("/cars")
+    public ResponseEntity<List<CarDTO>> getAllCars(){
+        List<CarDTO> allCars = adminService.getAllCars();
+        return ResponseEntity.ok(allCars);
     }
 
 
