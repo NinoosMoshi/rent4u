@@ -7,22 +7,26 @@ import { GetBookingsComponent } from './components/get-bookings/get-bookings.com
 import { AddCarComponent } from './components/add-car/add-car.component';
 import { SearchCarComponent } from './components/search-car/search-car.component';
 import { UpdateCarComponent } from './components/update-car/update-car.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DemoAngularZorroModules } from 'src/app/DemoAngularZorroModules';
+
 
 
 
 @NgModule({
   declarations: [
-
-  
     AdminDashboardComponent,
-        GetBookingsComponent,
-        AddCarComponent,
-        SearchCarComponent,
-        UpdateCarComponent
+    GetBookingsComponent,
+    AddCarComponent,
+    SearchCarComponent,
+    UpdateCarComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DemoAngularZorroModules
   ]
 })
 export class AdminModule { }
