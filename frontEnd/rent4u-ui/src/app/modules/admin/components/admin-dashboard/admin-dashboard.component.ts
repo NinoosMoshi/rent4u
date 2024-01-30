@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,7 +14,9 @@ export class AdminDashboardComponent {
   cars:any = [];
 
   constructor(private adminService:AdminService,
-              private router:Router){}
+              private router:Router,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService){}
 
   ngOnInit(){
     this.getAllCars();
@@ -33,6 +37,26 @@ export class AdminDashboardComponent {
         console.log("there is an error")
       }
     })
+  }
+
+
+
+  deleteCar(id:number){
+    this.spinner.show();
+    this.adminService.deleteCar(id).subscribe({
+      next:res =>{
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 1000);
+        this.getAllCars()
+        this.toastr.success('Success', 'Car Deleted Successfully', {timeOut: 2000});
+        this.router.navigateByUrl("/admin/dashboard")
+      },
+      error:err =>{
+        this.toastr.error('Error', 'Car Deletion Failed. There is an issue.', {timeOut: 2000});
+        setTimeout(() => { this.spinner.hide();}, 2000);
+      }
+     })
   }
 
 

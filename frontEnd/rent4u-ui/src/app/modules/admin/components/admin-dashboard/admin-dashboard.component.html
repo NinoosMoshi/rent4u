@@ -44,49 +44,10 @@
           <h3>{{ tempCar.name }}</h3>
           <h2>${{ tempCar.price }}<span>/day</span></h2>
           <div class="button-container">
-            <button class="update-btn">Update</button>
-            <button class="delete-btn">Delete</button>
+            <button class="update-btn" routerLink="/admin/car/{{tempCar.id}}">Update</button>
+            <button class="delete-btn" (click)="deleteCar(tempCar.id)">Delete</button>
           </div>
       </div>
-
-      <!-- <div class="box">
-          <div class="box-img">
-              <img src="../assets/img/car2.jpg" alt="">
-          </div>
-          <p>2017</p>
-          <h3>2018 Honda Civic</h3>
-          <h2>$40<span>/day</span></h2>
-          <div class="button-container">
-            <button class="update-btn">Update</button>
-            <button class="delete-btn">Delete</button>
-          </div>
-      </div> -->
-
-      <!-- <div class="box">
-          <div class="box-img">
-              <img src="../assets/img/car3.jpg" alt="">
-          </div>
-          <p>2017</p>
-          <h3>2018 Honda Civic</h3>
-          <h2>$40<span>/day</span></h2>
-          <div class="button-container">
-            <button class="update-btn">Update</button>
-            <button class="delete-btn">Delete</button>
-          </div>
-      </div> -->
-
-      <!-- <div class="box">
-          <div class="box-img">
-              <img src="../assets/img/car4.jpg" alt="">
-          </div>
-          <p>2017</p>
-          <h3>2018 Honda Civic</h3>
-          <h2>$40<span>/day</span></h2>
-          <div class="button-container">
-            <button class="update-btn">Update</button>
-            <button class="delete-btn">Delete</button>
-          </div>
-      </div> -->
 
   </div>
 </section>

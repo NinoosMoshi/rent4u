@@ -28,6 +28,35 @@ export class AdminService {
   }
 
 
+  getCarById(id:number):Observable<any>{
+    return this.http.get(`${this.BASIC_URL}/car/${id}`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+
+  updateCar(carId:number, carDTO:any):Observable<any>{
+    return this.http.put(`${this.BASIC_URL}/car/${carId}`, carDTO, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+
+  deleteCar(id:number):Observable<any>{
+    return this.http.delete(`${this.BASIC_URL}/car/${id}`, {
+      headers:this.createAuthorizationHeader()
+    })
+  }
+
+
+  searchCar(searchCarDTO:any):Observable<any>{
+    return this.http.post(`${this.BASIC_URL}/car/search`, searchCarDTO, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+
+
 
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
