@@ -37,6 +37,23 @@
 <!-- end admin Header -->
 
 
+<!-- start customer Header -->
+<header *ngIf="isCustomerLoggedIn">
+  <a href="#" class="logo"><img src="../assets/img/jeep.png" alt=""></a>
+
+  <div class="bx bx-menu" id="menu-icon"></div>
+
+  <ul class="navbar">
+    <li><a routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</a></li>
+    <li><a routerLink="/customer/search" routerLinkActive="active">Search</a></li>
+  </ul>
+  <div class="header-btn">
+    <a (click)="logout()" class="log-out">Logout</a>
+  </div>
+</header>
+<!-- end customer Header -->
+
+
 
 
 

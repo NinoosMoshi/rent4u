@@ -6,11 +6,13 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
 import { DemoAngularZorroModules } from 'src/app/DemoAngularZorroModules';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchCarComponent } from './components/search-car/search-car.component';
 
 
 @NgModule({
   declarations: [
-    CustomerDashboardComponent
+    CustomerDashboardComponent,
+    SearchCarComponent
   ],
   imports: [
     CommonModule,
