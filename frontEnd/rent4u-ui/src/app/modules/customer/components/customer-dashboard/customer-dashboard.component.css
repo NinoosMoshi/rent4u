@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-color: #f8f8f8;
+  min-height: 91vh;
+  padding: 10px;
+}
+
+.child {
+  padding: 20px;
+  width: 100%;
+  max-width: 780px;
+  background-color: white;
+  box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 0 auto 20px;
+}
+
+.profile {
+  height: auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+h2 {
+  cursor: pointer;
+  color: #108ee9;
+}
+
+hr {
+  margin: 10px 0;
+}
+
+.btn-book {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .child {
+    padding: 10px;
+  }
+
+  .profile {
+    height: auto;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  .btn-book {
+    margin-top: 10px;
+  }
+}
