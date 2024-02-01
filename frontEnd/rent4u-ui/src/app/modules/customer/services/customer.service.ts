@@ -27,6 +27,21 @@ export class CustomerService {
 
 
 
+  getCarById(carId:number):Observable<any>{
+    return this.http.get<any>(`${this.BASIC_URL}/car/${carId}`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+
+  bookCarTemp(carId:number, bookCarDTO:any):Observable<any>{
+    return this.http.post<[]>(`${this.BASIC_URL}/car/book/${carId}`, bookCarDTO, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+
+
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(

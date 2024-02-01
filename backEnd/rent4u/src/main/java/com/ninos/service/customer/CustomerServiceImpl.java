@@ -1,19 +1,28 @@
 package com.ninos.service.customer;
 
 import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
+
+import com.ninos.mapper.BookCarMapper;
 import com.ninos.mapper.CarMapper;
+import com.ninos.model.dto.BookCarDTO;
 import com.ninos.model.dto.CarDTO;
 import com.ninos.model.dto.CarDtoListDTO;
 import com.ninos.model.dto.SearchCarDTO;
+import com.ninos.model.entity.BookCar;
 import com.ninos.model.entity.Car;
+import com.ninos.repository.BookCarRepository;
 import com.ninos.repository.CarRepository;
 import com.ninos.repository.UserRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+import com.ninos.model.entity.User;
+import com.ninos.model.enums.BookCarStatus;
+
 
 
 
@@ -24,6 +33,8 @@ public class CustomerServiceImpl implements CustomerService{
     private final CarRepository carRepository;
     private final UserRepository userRepository;
     private final CarMapper carMapper;
+    private final BookCarMapper bookCarMapper;
+    private final BookCarRepository bookCarRepository;
 
 
     @Override
@@ -53,5 +64,52 @@ public class CustomerServiceImpl implements CustomerService{
         carDtoListDTO.setCarDTOList(carList.stream().map(carMapper::entityToDto).collect(Collectors.toList()));
         return carDtoListDTO;
     }
+
+    @Override
+    public CarDTO getCarById(long carId) {
+        Optional<Car> optionalCar = carRepository.findById(carId);
+//        return optionalCar.map(carMapper::entityToDto).orElse(null);
+        if (optionalCar.isPresent()){
+            return carMapper.entityToDto(optionalCar.get());
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public boolean bookCar(Long carId, BookCarDTO bookCarDTO) {
+//        User  user = null;
+//        Car car = null;
+
+        Optional<Car> optionalCar = carRepository.findById(carId);
+        Optional<User> optionalUser = userRepository.findById(bookCarDTO.getUserId());
+
+        if(optionalCar.isPresent() && optionalUser.isPresent()){
+            Car existingCar = optionalCar.get();
+            BookCar bookCar = new BookCar();
+            bookCar.setUser(optionalUser.get());
+            bookCar.setCar(existingCar);
+            bookCar.setBookCarStatus(BookCarStatus.PENDING);
+
+            bookCar.setFromDate(bookCarDTO.getFromDate());
+            bookCar.setToDate(bookCarDTO.getToDate());
+
+            long diffInMilliSeconds = bookCarDTO.getToDate().getTime() - bookCarDTO.getFromDate().getTime();
+            long days = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+
+            bookCar.setDays(days);
+            bookCar.setPrice(existingCar.getPrice() * days);
+            bookCarRepository.save(bookCar);
+
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
 
 }

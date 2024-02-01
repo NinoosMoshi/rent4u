@@ -7,12 +7,14 @@ import { DemoAngularZorroModules } from 'src/app/DemoAngularZorroModules';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchCarComponent } from './components/search-car/search-car.component';
+import { BookCarComponent } from './components/book-car/book-car.component';
 
 
 @NgModule({
   declarations: [
     CustomerDashboardComponent,
-    SearchCarComponent
+    SearchCarComponent,
+    BookCarComponent
   ],
   imports: [
     CommonModule,
