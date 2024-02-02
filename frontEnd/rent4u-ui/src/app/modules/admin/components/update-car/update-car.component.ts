@@ -21,7 +21,7 @@ export class UpdateCarComponent {
   listOfBrands = ['BMW','AUDI','TESLA','TOYOTA','HONDA'];
   listOfType = ['Petrol','Hybrid', 'Diesel', 'Electric'];
   listOfColor = ['Red', 'White', 'Blue', 'Black'];
-  listOfTransmission = ['Manual', 'Automatic'];
+
 
 
 
@@ -50,6 +50,7 @@ ngOnInit(){
 getCarById(){
   this.adminService.getCarById(this.carId).subscribe({
    next:res =>{
+    console.log(res)
      const carDTO = res;
      this.existingImage = 'data:image/jpeg;base64,' + res.returnImage;
      this.carForm.patchValue(carDTO);
@@ -65,9 +66,11 @@ getCarById(){
 
 updateCar(){
    const formData:FormData = new FormData();
+
    if(this.imgChanged && this.selectedFile){
-      formData.append('image', this.selectedFile)
+    formData.append('image', this.selectedFile);
    }
+
    formData.append('brand',this.carForm.get('brand').value);
    formData.append('name',this.carForm.get('name').value);
    formData.append('type',this.carForm.get('type').value);
@@ -76,9 +79,11 @@ updateCar(){
    formData.append('description',this.carForm.get('description').value);
    formData.append('price',this.carForm.get('price').value);
 
+
    this.adminService.updateCar(this.carId,formData).subscribe({
+
      next:res =>{
-       console.log(res)
+       console.log(this.carId)
        this.router.navigateByUrl("/admin/dashboard")
      },
      error:err =>{
@@ -87,6 +92,7 @@ updateCar(){
    })
 
 }
+
 
 
 onFileSelected(event:any){

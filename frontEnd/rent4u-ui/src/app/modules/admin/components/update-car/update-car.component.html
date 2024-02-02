@@ -1,12 +1,11 @@
 <div style="margin-top: 50px;">
-
     <div class="parent">
       <div class="child">
         <div nz-row class="imgDiv">
           <h2 style="margin-left: 120px;">Update Car</h2>
         </div>
 
-        <form nz-form [formGroup]="carForm">
+        <form nz-form [formGroup]="carForm" (ngSubmit)="updateCar()">
           <div nz-row>
             <div class="file-upload-container">
                <label class="file-upload-label">
@@ -97,7 +96,7 @@
           </div>
 
           <button nz-button class="login-form-button login-form-margin"
-           [nzType]="'primary'" (click)="updateCar()">
+           [nzType]="'primary'">
            Update
           </button>
 
