@@ -4,11 +4,13 @@ package com.ninos.service.admin;
 import java.io.IOException;
 import java.util.List;
 
+import com.ninos.model.dto.BookCarDTO;
 import com.ninos.model.dto.CarDTO;
 import com.ninos.model.dto.CarDtoListDTO;
 import com.ninos.model.dto.SearchCarDTO;
 
 public interface AdminService {
+
 
     CarDTO addCar(CarDTO carDTO) throws IOException;
 
@@ -20,7 +22,8 @@ public interface AdminService {
 
     void deleteCar(Long id);
 
-
     CarDtoListDTO searchCar(SearchCarDTO searchCarDTO);
+
+    List<BookCarDTO> getBookings();
 
 }

@@ -11,6 +11,9 @@ import com.ninos.model.enums.BookCarStatus;
 public class BookCarDTO {
 
     private Long id;
+    private String fullName;
+    private String email;
+    private String phone;
     private Date fromDate;
     private Date toDate;
     private Long days;
@@ -20,8 +23,7 @@ public class BookCarDTO {
     private Long userId;
     private Long carId;
 
-    private String username;
-    private String email;
+
 
 
 }

@@ -79,8 +79,6 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public boolean bookCar(Long carId, BookCarDTO bookCarDTO) {
-//        User  user = null;
-//        Car car = null;
 
         Optional<Car> optionalCar = carRepository.findById(carId);
         Optional<User> optionalUser = userRepository.findById(bookCarDTO.getUserId());
@@ -92,6 +90,9 @@ public class CustomerServiceImpl implements CustomerService{
             bookCar.setCar(existingCar);
             bookCar.setBookCarStatus(BookCarStatus.PENDING);
 
+            bookCar.setFullName(optionalUser.get().getName());
+            bookCar.setEmail(optionalUser.get().getEmail());
+            bookCar.setPhone(optionalUser.get().getPhone());
             bookCar.setFromDate(bookCarDTO.getFromDate());
             bookCar.setToDate(bookCarDTO.getToDate());
 

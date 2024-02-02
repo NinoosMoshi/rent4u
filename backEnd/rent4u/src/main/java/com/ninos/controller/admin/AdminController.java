@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ninos.model.dto.BookCarDTO;
 import com.ninos.model.dto.CarDTO;
 import com.ninos.model.dto.SearchCarDTO;
 import com.ninos.service.admin.AdminService;
@@ -75,6 +76,12 @@ public class AdminController {
     @PostMapping("/car/search")
     public ResponseEntity<?> searchCar(@RequestBody SearchCarDTO searchCarDTO){
         return ResponseEntity.ok(adminService.searchCar(searchCarDTO));
+    }
+
+
+    @GetMapping("/car/bookings")
+    public ResponseEntity<List<BookCarDTO>> getBookings(){
+        return ResponseEntity.ok(adminService.getBookings());
     }
 
 

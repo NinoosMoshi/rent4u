@@ -36,6 +36,17 @@
           <!-- end validation -->
         </div>
 
+        <div class="field input-field">
+          <input id="phone" [formControlName]="'phone'" type="text" placeholder="Your Phone Number" class="input">
+          <!-- start validation -->
+          <div class="validation-messages" *ngIf="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)">
+            <div *ngIf="signupForm.controls['phone'].errors?.['required']">
+              Phone Number is required.
+            </div>
+          </div>
+          <!-- end validation -->
+        </div>
+
         <!-- Add space here -->
         <div class="spacer"></div>
 

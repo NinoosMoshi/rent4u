@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-get-bookings',
@@ -6,5 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./get-bookings.component.css']
 })
 export class GetBookingsComponent {
+
+  bookings:any;
+
+  constructor(private adminService:AdminService){}
+
+
+  ngOnInit(){
+    this.getBookings();
+  }
+
+  getBookings(){
+    this.adminService.getBookings().subscribe({
+      next:res =>{
+        this.bookings = res;
+      },
+      error:err =>{
+        console.log("the error is: " + err)
+      }
+    })
+  }
+
+
+
+
+
 
 }

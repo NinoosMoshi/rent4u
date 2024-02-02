@@ -16,7 +16,6 @@ export class BookCarComponent {
   car:any;
   processedImage:any;
   validateForm!:FormGroup;
-  // isSpinning:boolean = false;
   dateFormat="MM-dd-YYYY";
 
   constructor(private customerService:CustomerService,
@@ -27,6 +26,9 @@ export class BookCarComponent {
 
   ngOnInit(){
     this.validateForm = this.fb.group({
+      fullname:[null, Validators.required],
+      phone:[null, Validators.required],
+      email:[null, Validators.required],
       toDate:[null, Validators.required],
       fromDate:[null, Validators.required]
     })
@@ -50,12 +52,18 @@ export class BookCarComponent {
   bookCar(data:any){
     // this.isSpinning = true;
     let bookCarDTO = {
+      // fullname: this.validateForm.get('fullname')?.value,
+      // phone: this.validateForm.get('phone')?.value,
+      // email: this.validateForm.get('email')?.value,
       toDate: data.toDate,
       fromDate: data.fromDate,
       userId: StorageService.getUserId(),
       carId: this.carId
     }
 
+    // console.log(bookCarDTO.fullname);
+    // console.log(bookCarDTO.phone);
+    // console.log(bookCarDTO.email);
     console.log(bookCarDTO.toDate);
     console.log(bookCarDTO.fromDate);
     console.log(bookCarDTO.userId);

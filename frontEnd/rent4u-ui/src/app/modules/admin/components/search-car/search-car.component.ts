@@ -30,6 +30,7 @@ export class SearchCarComponent {
 
 
  searchCar(){
+  this.cars = [];
   // this.isSpinning = true
   this.adminService.searchCar(this.searchCarForm.value).subscribe({
    next:res =>{

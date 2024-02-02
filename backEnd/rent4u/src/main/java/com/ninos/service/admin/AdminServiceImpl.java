@@ -12,11 +12,15 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import com.ninos.exception.ResourceNotFoundException;
+import com.ninos.mapper.BookCarMapper;
 import com.ninos.mapper.CarMapper;
+import com.ninos.model.dto.BookCarDTO;
 import com.ninos.model.dto.CarDTO;
 import com.ninos.model.dto.CarDtoListDTO;
 import com.ninos.model.dto.SearchCarDTO;
+import com.ninos.model.entity.BookCar;
 import com.ninos.model.entity.Car;
+import com.ninos.repository.BookCarRepository;
 import com.ninos.repository.CarRepository;
 
 
@@ -27,6 +31,8 @@ public class AdminServiceImpl implements AdminService{
 
     private final CarRepository carRepository;
     private final CarMapper carMapper;
+    private final BookCarRepository bookCarRepository;
+    private final BookCarMapper bookCarMapper;
 
 
     // add
@@ -105,6 +111,14 @@ public class AdminServiceImpl implements AdminService{
         CarDtoListDTO carDtoListDTO = new CarDtoListDTO();
         carDtoListDTO.setCarDTOList(carList.stream().map(carMapper::entityToDto).collect(Collectors.toList()));
         return carDtoListDTO;
+    }
+
+
+
+    @Override
+    public List<BookCarDTO> getBookings() {
+        List<BookCar> cars = bookCarRepository.findAll();
+        return cars.stream().map(bookCar -> bookCarMapper.bookCarEntityToDto(bookCar)).collect(Collectors.toList());
     }
 
 
