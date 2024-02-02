@@ -31,11 +31,11 @@
         </td>
 
         <td *ngIf="booking.bookCarStatus == 'PENDING'">
-            <!-- <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-               (click)="changeBookingStatus(booking.id, 'Approve')">Approve</button> -->
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+               (click)="changeBookingStatus(booking.id, 'Approve')">Approve</button>
 
-            <!-- <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-               (click)="changeBookingStatus(booking.id, 'Reject')" nzDanger>Reject</button> -->
+            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+               (click)="changeBookingStatus(booking.id, 'Reject')" nzDanger>Reject</button>
         </td>
        </tr>
      </tbody>

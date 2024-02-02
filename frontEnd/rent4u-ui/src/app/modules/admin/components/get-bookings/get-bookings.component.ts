@@ -30,6 +30,19 @@ export class GetBookingsComponent {
 
 
 
+  changeBookingStatus(bookingId:number, status:string){
+    this.adminService.changeBookingStatus(bookingId,status).subscribe({
+     next:res =>{
+       this.getBookings();
+     },
+     error:err =>{
+
+     }
+    })
+ }
+
+
+
 
 
 
