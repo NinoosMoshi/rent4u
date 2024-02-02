@@ -14,7 +14,7 @@ import com.ninos.model.entity.Car;
 public class BookCarMapper {
 
 
-    public BookCarDTO bookCarEntityToDto(Car bookCar){
+    public BookCarDTO bookCarEntityToDto(BookCar bookCar){
         BookCarDTO bookCarDTO = new BookCarDTO();
         BeanUtils.copyProperties(bookCar,bookCarDTO);
         return bookCarDTO;

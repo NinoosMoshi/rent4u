@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchCarComponent } from './components/search-car/search-car.component';
 import { BookCarComponent } from './components/book-car/book-car.component';
+import { MyBookingsComponent } from './components/my-bookings/my-bookings.component';
 
 
 @NgModule({
   declarations: [
     CustomerDashboardComponent,
     SearchCarComponent,
-    BookCarComponent
+    BookCarComponent,
+    MyBookingsComponent
   ],
   imports: [
     CommonModule,

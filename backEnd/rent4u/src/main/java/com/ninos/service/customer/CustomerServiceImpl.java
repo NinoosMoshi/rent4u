@@ -112,4 +112,12 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 
+    @Override
+    public List<BookCarDTO> getBookingsByUserId(Long userId) {
+        List<BookCar> bookings = bookCarRepository.findAllByUserId(userId);
+//        return bookings.stream().map(bookCarMapper::bookCarEntityToDto).collect(Collectors.toList());
+        return bookings.stream().map(bookCar -> bookCarMapper.bookCarEntityToDto(bookCar)).collect(Collectors.toList());
+    }
+
+
 }

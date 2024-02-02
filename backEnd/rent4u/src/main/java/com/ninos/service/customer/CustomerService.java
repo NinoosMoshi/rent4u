@@ -17,4 +17,6 @@ public interface CustomerService {
 
     boolean bookCar(Long carId, BookCarDTO bookCarDTO);
 
+    List<BookCarDTO> getBookingsByUserId(Long userId);
+
 }
